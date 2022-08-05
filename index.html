@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<script
+			src="https://kit.fontawesome.com/a41ebeca25.js"
+			crossorigin="anonymous"
+		></script>
+		<title>Meme Maker</title>
+	</head>
+	<body>
+		<div class="canvas-and-btns">
+			<canvas></canvas>
+
+			<div class="btns-container">
+				<div class="mode-btns">
+					<button id="fill" title="캔버스 채우기">
+						<i class="fa-solid fa-fill-drip"></i>
+					</button>
+					<button id="line" class="mode-selected" title="그리기">
+						<i class="fa-solid fa-pencil"></i>
+					</button>
+					<button id="straight" title="직선 그리기">
+						<i class="fa-solid fa-bars-staggered"></i>
+					</button>
+					<button id="auto-fill" title="면적 자동 채우기">
+						<i class="fa-solid fa-shapes"></i>
+					</button>
+					<button id="eraser" title="지우개">
+						<i class="fa-solid fa-eraser"></i>
+					</button>
+					<button id="reset-canvas" title="캔버스 초기화">
+						<i class="fa-solid fa-trash-can"></i>
+					</button>
+					<button id="rectangle" title="직사각형 그리기">
+						<i class="fa-solid fa-square-full"></i>
+					</button>
+					<button id="circle" title="원 그리기">
+						<i class="fa-solid fa-circle"></i>
+					</button>
+				</div>
+				<div class="etc-btns">
+					<label for="file">
+						<i class="fa-solid fa-image"></i>
+						Add an Image
+						<input
+							type="file"
+							title="Input an image"
+							accept="image/*"
+							id="file"
+					/></label>
+					<button id="save">
+						<i class="fa-solid fa-file-export"></i> Save
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="drawsets">
+			<!-- 선 굵기 range bar -->
+			<div class="drawsets-line-width-container">
+				<h2>LINE WIDTH</h2>
+				<input
+					id="line-width"
+					type="range"
+					min="1"
+					max="30"
+					value="10"
+				/>
+				<div><span id="current-width">10</span></div>
+			</div>
+
+			<!-- 색상 선택 -->
+			<div class="drawsets-color-options">
+				<h2>COLOR</h2>
+				<div class="color-options-palettes">
+					<div class="color-options-palettes_picker">
+						<h4>COLOR PICKER</h4>
+						<input id="color" type="color" />
+						<div class="current-color">#000000</div>
+					</div>
+					<div class="color-options-container">
+						<h4>COLOR PRESET</h4>
+						<div
+							class="color-option color-selected"
+							style="background-color: #000000"
+							data-color="#000000"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #ffffff"
+							data-color="#ffffff"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #e55039"
+							data-color="#e55039"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #fa983a"
+							data-color="#fa983a"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #f6b93b"
+							data-color="#f6b93b"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #78e08f"
+							data-color="#78e08f"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #079992"
+							data-color="#079992"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #82ccdd"
+							data-color="#82ccdd"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #3c6382"
+							data-color="#3c6382"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #4a69bd"
+							data-color="#4a69bd"
+						></div>
+						<div
+							class="color-option"
+							style="background-color: #0c2461"
+							data-color="#0c2461"
+						></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 텍스트 삽입 -->
+			<div class="drawsets-text">
+				<h2>TEXT</h2>
+				<p>
+					<i class="fa-solid fa-circle-info"></i>
+					텍스트를 입력하고 캔버스 상에서 삽입하고 싶은 위치에 더블
+					클릭하세요. 스타일을 적용하려면 더블 클릭 전에 해야 합니다!
+				</p>
+				<input type="text" placeholder="Add text here..." id="text" />
+
+				<h5 id="font_style-set">
+					<i class="fa-solid fa-circle-plus"></i> Set a font style
+				</h5>
+
+				<div class="text-font_container hidden">
+					<div class="text-font_container-fonts">
+						<span class="font_container-title">FONT</span>
+						<button
+							class="font-style font-selected"
+							style="font-family: 'Oxygen'"
+							data-font="Oxygen"
+						>
+							Oxygen
+						</button>
+						<button
+							class="font-style"
+							style="font-family: 'Montserrat'"
+							data-font="Montserrat"
+						>
+							Montserrat
+						</button>
+						<button
+							class="font-style"
+							style="font-family: 'Playfair Display'"
+							data-font="Playfair Display"
+						>
+							Playfair Display
+						</button>
+						<button
+							class="font-style"
+							style="font-family: 'Inconsolata'"
+							data-font="Inconsolata"
+						>
+							Inconsolata
+						</button>
+						<button
+							class="font-style"
+							style="font-family: 'Mouse Memoirs'"
+							data-font="Mouse Memoirs"
+						>
+							Mouse Memoirs
+						</button>
+						<button
+							class="font-style"
+							style="font-family: 'Square Peg'"
+							data-font="Square Peg"
+						>
+							Square Peg
+						</button>
+						<button
+							class="font-style"
+							style="font-family: 'Dancing Script'"
+							data-font="Dancing Script"
+						>
+							Dancing Script
+						</button>
+					</div>
+					<div class="text-font_container-weights">
+						<span class="font_container-title">WEIGHT</span>
+						<button
+							class="font-weight"
+							style="font-weight: 300"
+							data-font_weight="300"
+						>
+							Light
+						</button>
+						<button
+							class="font-weight font-selected"
+							style="font-weight: 400"
+							data-font_weight="400"
+						>
+							Regular
+						</button>
+						<button
+							class="font-weight"
+							style="font-weight: 700"
+							data-font_weight="700"
+						>
+							Bold
+						</button>
+					</div>
+					<div class="text-font_container-size">
+						<span class="font_container-title">SIZE</span>
+						<input
+							class="font-size"
+							type="range"
+							min="10"
+							max="100"
+							value="20"
+						/>
+					</div>
+					<div class="text-font_container-preview">
+						<span class="font_container-title">PREVIEW</span>
+						<span class="font-preview">테스트용 아무말</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="app.js"></script>
+		<script src="control.js"></script>
+	</body>
+</html>

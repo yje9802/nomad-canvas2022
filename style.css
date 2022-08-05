@@ -1,0 +1,308 @@
+@import "reset.css";
+
+/* Oxygen */
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+/* Noto Sans Korean */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400&display=swap');
+/* Mouse Memoirs */
+@import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
+/* Montserrat */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+/* Inconsolata */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&display=swap');
+/* Square Peg */
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
+/* Playfair Display */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+/* Dancing Script */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+
+body{
+    background-color: #FFF2D3;
+    font-family: 'Oxygen', 'Noto Sans KR', sans-serif;
+
+    width: 100%;
+    height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-and-btns {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+canvas {
+    width: 600px;
+    height: 600px;
+    background-color: white;
+    border-radius: 10px;
+    border: 5px solid #fce7b3da;
+    margin-right: 70px;
+}
+
+.btns-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+}
+.mode-btns {
+    display: grid;
+    grid-template-columns: 60px 60px;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    margin-bottom: 30px;
+}
+.mode-btns button {
+    width: 60px;
+    height: 60px;
+    background-color: #FFDBCCdb;
+    border: 5px solid #FFDBCC;
+    border-radius: 5px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+.mode-btns button:hover {
+    background-color: #f6b092db;
+    border: 5px solid #F6B092; 
+}
+button.mode-selected {
+    background-color: #f6b092db;
+    border: 5px solid #F6B092;
+    cursor: default;
+}
+
+.etc-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+.etc-btns label {
+    all:unset;
+    width: 180px;
+    padding: 15px 0px;
+    background-color: #e0e0e0db;
+    border: 5px solid #E0E0E0;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: opacity linear .1s;
+    margin-bottom: 10px;
+}
+#file {
+    display: none;
+}
+#save {
+    all: unset;
+    width: 180px;
+    height: 45px;
+    background-color: #e0e0e0db;
+    border: 5px solid #E0E0E0;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: opacity linear .1s;
+}
+.etc-btns label:hover, #save:hover {
+    background-color: #c3c2c2;
+    border-color: white;
+}
+
+/* 선굵기, 색 선택, 텍스트 삽입 container 관리 */
+.drawsets {
+    display: flex;
+    flex-direction: column;
+}
+/* 타이틀 */
+.drawsets h2 {
+    font-size: 25px;
+    font-weight: 700;
+    color: #f6a192;
+}
+
+/* 선굵기 */
+.drawsets-line-width-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+#line-width {
+    margin-left: 30px;
+    margin-right: 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: relative;
+    width: 350px;
+    height: 15px;
+    border-radius: 8px;
+}
+#line-width::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    background-color: #f6a192;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.drawsets-line-width-container div {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #f6a192db;
+    border: 5px solid #f6a192;
+    color: white;
+    text-align: center;
+}
+
+/* 색상 선택 */
+.drawsets-color-options {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.drawsets-color-options h4 {
+    font-weight: 400;
+    color: #f6a192;
+    width: 150px;
+    margin-right: 20px;
+}
+.color-options-palettes {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.color-options-palettes_picker {
+    font-weight: 400;
+    color: #f6a192;
+    display: flex;
+    align-items: center;
+}
+#color {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-right: 15px;
+}
+#color::-webkit-color-swatch {
+    border: 5px solid white;
+}
+.current-color {
+    color: #4a4443;
+}
+.color-options-container {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+}
+.color-option {
+    width:50px;
+    height: 50px;
+    cursor: pointer;
+}
+.color-option:hover {
+    border: 5px solid white;
+    transform: scale(1.4);
+}
+.color-option.color-selected {
+    border: 5px solid white;
+    cursor: default;
+}
+
+/* 텍스트 삽입 */
+.drawsets-text {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+.drawsets-text p {
+    margin: 20px 0px;
+    font-size: 15px;
+    color: #f6b092dd;
+}
+#text {
+    background-color: white;
+    border: 5px solid #fce7b3da;
+    width: 350px;
+    height: 40px;
+    padding: 0px 10px;
+    margin-bottom: 20px;
+}
+#font_style-set {
+    color: #f6a192;
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.text-font_container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+}
+.font_container-title {
+    color: #f6a192;
+    font-size: 15px;
+    width: 100px;
+    margin-right: 10px;
+}
+.text-font_container button {
+    width: 120px;
+    height: 40px;
+    background-color: white;
+    border-radius: 5px;
+    border: 5px solid #fce7b3da;
+    color: #4a4443;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.text-font_container .font-selected {
+    background-color: #fce7b3da;
+    border-color: #fce7b3;
+    cursor: default;
+}
+.text-font_container button:hover {
+    background-color: #fce7b3da;
+    border-color: #fce7b3;
+}
+.text-font_container-fonts {
+    display: flex;
+    align-items: center;
+}
+.text-font_container-weights {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+.text-font_container-size {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-top: 20px;
+    color: #f6a192;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+.text-font_container-preview {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+
+/* 특정 조건이 만족하기 전까지 요소 숨기기 */
+.hidden { 
+    display: none;
+}
