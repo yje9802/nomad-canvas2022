@@ -1,3 +1,3 @@
 # [2022] Build Painting Application
 
-Build simple painting application using Canvas API
+I built simple painting application using Canvas API
