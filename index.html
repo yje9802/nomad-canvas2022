@@ -35,12 +35,22 @@
 					<button id="reset-canvas" title="캔버스 초기화">
 						<i class="fa-solid fa-trash-can"></i>
 					</button>
-					<button id="rectangle" title="직사각형 그리기">
+					<button id="rectangle" title="사각형 그리기">
 						<i class="fa-solid fa-square-full"></i>
 					</button>
 					<button id="circle" title="원 그리기">
 						<i class="fa-solid fa-circle"></i>
 					</button>
+				</div>
+				<div class="mode-btns-instruction hidden">
+					<i class="fa-solid fa-circle-info"></i>
+					<span class="instruction-straight">
+						캔버스 상에서 직선이 시작하길 원하는 위치를 클릭한 다음
+						끝나길 원하는 위치를 클릭하세요. 직선이 끝난 지점에서
+						이어서 새로운 직선을 그릴 수 있습니다. 직선의 시작
+						포인트를 초기화 하고 싶다면, 직선 그리기 버튼을 한 번 더
+						클릭하세요.
+					</span>
 				</div>
 				<div class="etc-btns">
 					<label for="file">
@@ -139,6 +149,16 @@
 							style="background-color: #0c2461"
 							data-color="#0c2461"
 						></div>
+					</div>
+					<!-- 내 팔레트 지정 -->
+					<div class="color-options-mypalette">
+						<h4>CUSTOM PRESET</h4>
+						<div class="custom_preset" data-color=""></div>
+						<div class="custom_preset" data-color=""></div>
+						<div class="custom_preset" data-color=""></div>
+						<div class="custom_preset" data-color=""></div>
+						<div class="custom_preset" data-color=""></div>
+						<div class="custom_preset" data-color=""></div>
 					</div>
 				</div>
 			</div>
@@ -249,6 +269,13 @@
 						<span class="font-preview">테스트용 아무말</span>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="clear-modal hidden">
+			<span>캔버스를 초기화 할까요?</span>
+			<div>
+				<button class="clear-yes">YES</button>
+				<button class="clear-no">NO</button>
 			</div>
 		</div>
 		<script src="app.js"></script>
