@@ -97,7 +97,9 @@ function onColorChange(event) {
 	// color picker에서 선택한 색상이 무엇인지 헥사코드 표시
 	colorPickerResult.innerText = currColor;
 	// font preview update
-	onTextInput();
+	if (inputText.value !== "") {
+		onTextInput();
+	}
 }
 // color preset 관련
 function onColorClick(event) {
@@ -112,7 +114,9 @@ function onColorClick(event) {
 	selectedColor.classList.remove("color-selected");
 	selectedColor = event.target;
 	// font preview update
-	onTextInput();
+	if (inputText.value !== "") {
+		onTextInput();
+	}
 }
 // custom preset 관련
 function onCustomClick(event) {
@@ -129,7 +133,9 @@ function onCustomClick(event) {
 		event.target.classList.add("preset-selected");
 	}
 	// font preview update
-	onTextInput();
+	if (inputText.value !== "") {
+		onTextInput();
+	}
 }
 
 // 직선 그리기 모드에 대한 설명을 가리는 함수
