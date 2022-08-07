@@ -2,6 +2,7 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 // draw settings
 const lineWidth = document.querySelector("#line-width");
+const currWidth = document.querySelector("span#current-width");
 const color = document.querySelector("#color");
 const colorPickerResult = document.querySelector(".current-color");
 const colorOptions = Array.from(
@@ -84,7 +85,6 @@ function onCanvasClick(event) {
 
 // 선굵기 변경 관련 함수
 function onLineWidthChanged(event) {
-	const currWidth = document.querySelector("span#current-width");
 	ctx.lineWidth = event.target.value;
 	// 변경되는 width value를 옆에 표시해줌
 	currWidth.innerText = event.target.value;
@@ -96,6 +96,8 @@ function onColorChange(event) {
 	ctx.fillStyle = currColor;
 	// color picker에서 선택한 색상이 무엇인지 헥사코드 표시
 	colorPickerResult.innerText = currColor;
+	// font preview update
+	onTextInput();
 }
 // color preset 관련
 function onColorClick(event) {
@@ -109,6 +111,8 @@ function onColorClick(event) {
 	event.target.classList.add("color-selected");
 	selectedColor.classList.remove("color-selected");
 	selectedColor = event.target;
+	// font preview update
+	onTextInput();
 }
 // custom preset 관련
 function onCustomClick(event) {
@@ -124,6 +128,8 @@ function onCustomClick(event) {
 		event.target.dataset.color = currColor;
 		event.target.classList.add("preset-selected");
 	}
+	// font preview update
+	onTextInput();
 }
 
 // 직선 그리기 모드에 대한 설명을 가리는 함수
@@ -187,6 +193,24 @@ function clearCanvas() {
 	ctx.fillRect(0, 0, 800, 800);
 	ctx.lineWidth = 10;
 	lineWidth.value = "10";
+	currWidth.innerText = lineWidth.value;
+
+	selectedColor.classList.remove("color-selected");
+	document.querySelector(".color-default").classList.add("color-selected");
+	color.value = "#000000";
+	colorPickerResult.innerText = "#000000";
+	ctx.strokeStyle = "black";
+	ctx.fillStyle = "black";
+
+	// custom preset 초기화
+	const customs = Array.from(
+		document.getElementsByClassName("preset-selected")
+	);
+	customs.forEach((customColor) => {
+		customColor.style.backgroundColor = "white";
+		customColor.dataset.color = "";
+		customColor.classList.remove("preset-selected");
+	});
 
 	// 캔버스 초기화 후 기존 디폴트 세팅으로 돌아가야 하기에
 	// 선 그리기 버튼이 선택되어 있어야 함
